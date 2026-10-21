@@ -23,7 +23,7 @@ export function ProjectGrid({ items }: { items: Feature[] }) {
                 <span className="project-tools">{f.stack.join(" · ")}</span>
                 <span className="project-bottom">
                   <span className="project-more">
-                    read more <span aria-hidden="true">→</span>
+                    read more <span aria-hidden="true">{"→\uFE0E"}</span>
                   </span>
                   <span className="project-year">{f.year}</span>
                 </span>

@@ -136,7 +136,7 @@ export function AboutPage() {
           <Scrapbook items={photoPreview.map((name) => photos.find((p) => p.src.endsWith(name))).filter((p) => p !== undefined)} />
           <p className="see-all">
             <a className="button" href={pageHref("moments")}>
-              see all {photos.length} moments <span aria-hidden="true">→</span>
+              see all {photos.length} moments <span aria-hidden="true">{"→\uFE0E"}</span>
             </a>
           </p>
         </Reveal>

@@ -27,7 +27,7 @@ export function ContactLinks() {
             {l.text}
           </a>
           <span className="contact-arrow" aria-hidden="true">
-            ↗
+            {"↗\uFE0E"}
           </span>
         </li>
       ))}
@@ -40,10 +40,10 @@ export function ResumeButtons() {
   return (
     <div className="resume-buttons">
       <a className="button primary" href={profile.resume} target="_blank" rel="noreferrer">
-        view my résumé <span aria-hidden="true">↗</span>
+        view my résumé <span aria-hidden="true">{"↗\uFE0E"}</span>
       </a>
       <a className="button" href={profile.resume} download="Lexi Tinajero Resume.pdf">
-        download pdf <span aria-hidden="true">↓</span>
+        download pdf <span aria-hidden="true">{"↓\uFE0E"}</span>
       </a>
     </div>
   );

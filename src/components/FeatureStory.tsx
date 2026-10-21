@@ -77,7 +77,7 @@ export function FeatureStory({
               {feature.links.map((l) => (
                 <li key={l.href}>
                   <a href={l.href} target="_blank" rel="noreferrer">
-                    {l.label} ↗
+                    {l.label} {"↗\uFE0E"}
                   </a>
                 </li>
               ))}

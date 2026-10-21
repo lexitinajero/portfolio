@@ -77,7 +77,7 @@ function App() {
         </p>
         <p>© {new Date().getFullYear()} lexi tinajero</p>
         <button className="to-top" onClick={() => window.scrollTo({ top: 0 })}>
-          back to the top ↑
+          back to the top {"↑\uFE0E"}
         </button>
       </footer>
 

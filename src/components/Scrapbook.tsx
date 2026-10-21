@@ -6,7 +6,7 @@ export function Scrapbook({ items = photos }: { items?: FeedPhoto[] }) {
       {items.map((p) => (
         <li key={p.src}>
           <figure className="snapshot">
-            <img src={p.src} alt={p.caption} width={p.width} height={p.height} loading="lazy" />
+            <img src={p.src} alt={p.caption} width={p.width} height={p.height} decoding="async" />
             {(p.caption || p.place) && (
               <figcaption className="snapshot-caption">
                 {p.caption}

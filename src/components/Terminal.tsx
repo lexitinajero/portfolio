@@ -97,7 +97,7 @@ export function Terminal() {
     about: () => [
       profile.intro,
       <>
-        more on <Link href={pageHref("about")}>the about page →</Link>
+        more on <Link href={pageHref("about")}>the about page {"→\uFE0E"}</Link>
       </>,
     ],
     school: () => [`${education.school}`, `${education.degree}, ${education.dates}`],
@@ -113,7 +113,7 @@ export function Terminal() {
         f.dek,
         `${f.year} · ${f.stack.join(", ")}`,
         <>
-          full story on <Link href={pageHref("projects")}>the projects page →</Link>
+          full story on <Link href={pageHref("projects")}>the projects page {"→\uFE0E"}</Link>
         </>,
       ];
     },
@@ -123,10 +123,10 @@ export function Terminal() {
       profile.resume
         ? [
             <>
-              <Link href={profile.resume}>view my résumé ↗</Link>
+              <Link href={profile.resume}>view my résumé {"↗\uFE0E"}</Link>
               {"   "}
               <a href={profile.resume} download="Lexi Tinajero Resume.pdf">
-                download pdf ↓
+                download pdf {"↓\uFE0E"}
               </a>
             </>,
           ]

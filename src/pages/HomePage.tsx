@@ -56,7 +56,7 @@ export function HomePage({ ready }: { ready: boolean }) {
           <div className="about-text">
             <p>{about[0]}</p>
             <a className="more-link" href={pageHref("about")}>
-              more about me <span aria-hidden="true">→</span>
+              more about me <span aria-hidden="true">{"→\uFE0E"}</span>
             </a>
           </div>
         </Reveal>
@@ -67,7 +67,7 @@ export function HomePage({ ready }: { ready: boolean }) {
         <ProjectGrid items={homePicks.map((id) => features.find((f) => f.id === id)!)} />
         <p className="see-all">
           <a className="button" href={pageHref("projects")}>
-            see all projects <span aria-hidden="true">→</span>
+            see all projects <span aria-hidden="true">{"→\uFE0E"}</span>
           </a>
         </p>
       </section>
