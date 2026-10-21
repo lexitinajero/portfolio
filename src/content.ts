@@ -300,6 +300,7 @@ export const photos: FeedPhoto[] = photoList;
 export const photoPreview = [
   "dsc00334.jpg",
   "chocolate-hills.jpg",
+  "img-6010.jpg",
   "tokyo-tower.jpg",
   "sushi.jpg",
   "img-6602.jpg",
