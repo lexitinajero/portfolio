@@ -1,6 +1,12 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { TypedLine } from "./TypedLine";
 
-const DURATION = 2200;
+const STEPS: [string, string][] = [
+  ["reading about.md", "ok"],
+  ["building projects/", "ok"],
+  ["waking up spot", "ok"],
+  ["checking for typos", "probably fine"],
+];
 
 function rememberSeen() {
   try {
@@ -23,19 +29,18 @@ export function Intro({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = useState<"loading" | "leaving" | "gone">(() =>
     alreadySeen() || matchMedia("(prefers-reduced-motion: reduce)").matches ? "gone" : "loading",
   );
-  const [percent, setPercent] = useState(0);
+  const [typed, setTyped] = useState(false);
+  const [shown, setShown] = useState(0);
+  const doneTyping = useCallback(() => setTyped(true), []);
 
   useEffect(() => {
-    if (phase !== "loading") return;
-    const start = performance.now();
-    let frame = requestAnimationFrame(function tick(now) {
-      const t = Math.min(1, (now - start) / DURATION);
-      setPercent(Math.round((1 - (1 - t) ** 3) * 100));
-      if (t < 1) frame = requestAnimationFrame(tick);
-      else setTimeout(() => setPhase("leaving"), 250);
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [phase]);
+    if (phase !== "loading" || !typed) return;
+    const t =
+      shown <= STEPS.length
+        ? setTimeout(() => setShown((s) => s + 1), shown === 0 ? 250 : 220)
+        : setTimeout(() => setPhase("leaving"), 500);
+    return () => clearTimeout(t);
+  }, [phase, typed, shown]);
 
   useEffect(() => {
     if (phase === "gone") onDone();
@@ -50,17 +55,20 @@ export function Intro({ onDone }: { onDone: () => void }) {
 
   return (
     <div className={`intro ${phase}`} onClick={() => setPhase("leaving")} aria-hidden="true">
-      <p className="intro-command">lexi@unc ~ % open portfolio</p>
-      <p className="intro-title">
-        loading
-        <span className="intro-dots" />
+      <p>
+        <span className="intro-prompt">lexi@unc ~ %</span> <TypedLine text="open portfolio" speed={40} delay={250} onDone={doneTyping} />
+        {!typed && <span className="intro-cursor" />}
       </p>
-      <div className="intro-progress">
-        <div className="intro-bar">
-          <span style={{ width: `${percent}%` }} />
-        </div>
-        <span className="intro-percent">{percent}%</span>
-      </div>
+      {STEPS.slice(0, shown).map(([label, status]) => (
+        <p key={label}>
+          <span className="intro-step">{(label + " ").padEnd(24, ".")}</span> {status}
+        </p>
+      ))}
+      {shown > STEPS.length && (
+        <p>
+          <span className="intro-prompt">lexi@unc ~ %</span> <span className="intro-cursor" />
+        </p>
+      )}
     </div>
   );
 }

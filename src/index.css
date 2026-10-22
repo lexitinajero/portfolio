@@ -84,13 +84,15 @@ a {
   position: fixed;
   inset: 0;
   z-index: 300;
-  display: grid;
-  place-content: center;
-  justify-items: start;
-  gap: 1.25rem;
-  padding: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: calc(var(--gutter) + 0.5rem) var(--gutter);
   background: var(--black);
   color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
   cursor: pointer;
   transition: opacity 0.6s ease, visibility 0.6s;
 }
@@ -100,51 +102,19 @@ a {
 }
 .intro p {
   margin: 0;
+  white-space: pre;
 }
-.intro-command {
-  font-family: var(--mono);
-  font-size: 0.8rem;
+.intro-prompt,
+.intro-step {
   color: #8a8a8a;
 }
-.intro-title {
-  font-size: clamp(2.4rem, 8vw, 5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.intro-dots::after {
-  content: "";
-  animation: dots 1.2s steps(1) infinite;
-}
-@keyframes dots {
-  0%  { content: ""; }
-  25% { content: "."; }
-  50% { content: ".."; }
-  75% { content: "..."; }
-}
-.intro-progress {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: min(100%, 26rem);
-}
-.intro-bar {
-  flex: 1;
-  height: 2px;
-  background: #333333;
-}
-.intro-bar span {
-  display: block;
-  height: 100%;
+.intro-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
   background: var(--white);
-}
-.intro-percent {
-  width: 3.5ch;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  text-align: right;
-  color: #8a8a8a;
+  vertical-align: -0.2em;
+  animation: blink 1s steps(1) infinite;
 }
 
 .topbar {
