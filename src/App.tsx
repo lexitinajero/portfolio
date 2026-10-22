@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { photos, profile } from "./content";
 import { ContentsMenu } from "./components/ContentsMenu";
 import { Intro } from "./components/Intro";
-import { StatusBar } from "./components/StatusBar";
 import { AboutPage } from "./pages/AboutPage";
 import { HomePage } from "./pages/HomePage";
 import { MomentsPage } from "./pages/MomentsPage";
@@ -31,7 +30,6 @@ function App() {
       <Intro onDone={markIntroDone} />
 
       <header className="topbar">
-        <StatusBar />
         <div className="topbar-row">
           <a href={pageHref("home")} className="topbar-logo">
             lexi tinajero
